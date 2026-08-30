@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DBD perk generator</title>
+    </head>
+    <body>
+        <h3>Dead by Daylight perk generator</h3>
+        <button id="generate">Generate survivor perk</button>
+        <br>
+        <h2 id="title">Perk Name</h2>
+        <p id="desc">Perk Description</p>
+        <script>
+            // Set variables to elements
+            generate = document.getElementById("generate")
+            title = document.getElementById("title")
+            desc = document.getElementById("desc")
+            // Perk information bank
+            const titles1 = [
+                "Decisive ",
+                "Vigilant ",
+                "Background ",
+                "Balanced ",
+                "Bardic ",
+                "Boil ",
+                "Borrowed ",
+                "Bound by ",
+                "Calm ",
+                "Corrective ",
+                "Cross-",
+                "Dead ",
+                "Flip-",
+                "Inner ",
+                "Quick ",
+                "Rapid ",
+                "Reactive ",
+                "Urban ",
+                "Wide-Open "
+            ]
+            const titles2 = [
+                "Focus",
+                "Hope",
+                "Strength",
+                "Kindred",
+                "Will",
+                "Stand",
+                "Leader",
+                "Hand",
+                "Profile",
+                "Break",
+                "Man",
+                "Illusion",
+                "Mither",
+                "Preservation",
+                "Guidance",
+                "Twist",
+                "Energy",
+                "Healing",
+                "Alliance",
+                "Partner",
+                "Opportunity"
+            ]
+
+            const conditions = [
+                "all generators are completed",
+                "you cleanse a Totem",
+                "you are unhooked",
+                "you crouch",
+                "another Survivor becomes injured",
+                "a generator is completed",
+                "you complete a generator",
+                "you unhook a Survivor",
+                "you vault",
+                "another Survivor becomes downed",
+                "another Survivor is hooked",
+                "all other Survivors are dead",
+                "you drop a pallet",
+                "the Killer breaks a pallet",
+                "you are in the basement",
+                "the Trial begins",
+                "you are healed",
+                "you heal another Survivor"
+            ]
+
+            const results = [
+                "gain 6% Haste for 10 seconds",
+                "gain 5% Haste for 20 seconds",
+                "gain 2% Haste for 60 seconds",
+                "you scream and gain 5% Haste for 12 seconds",
+                "you scream",
+                "you scream and gain Endurance for 8 seconds",
+                "gain Endurance for 5 seconds",
+                "you see the Killer's aura for 5 seconds",
+                "you scream and see the Killer's aura for 10 seconds"
+            ]
+
+            const actions = [
+                "unlock chests",
+                "heal",
+                "unhook other Survivors",
+                "repair",
+                "cleanse Totems",
+                "mend Deep Wound",
+                "sabotage hooks",
+                "blind the Killer",
+                "open the Exit Gates",
+                "unlock the Hatch",
+                "drop Pallets"
+            ]
+            // Generator
+            generate.addEventListener("click", function() {
+                // Title
+                t1 = titles1[Math.floor(Math.random() * titles1.length)];
+                t2 = titles2[Math.floor(Math.random() * titles2.length)];
+                title.textContent = t1 + t2
+
+                //choose perk type
+                switch (Math.floor(Math.random() * 3))
+                {
+                    case 0:
+                        // condition perk
+                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
+                        result = results[Math.floor(Math.random() * results.length)];
+                        desc.textContent = "When " + condition1 + ", " + result + ".";
+                    break;
+
+                    case 1:
+                        // basekit changer perk
+                        action = actions[Math.floor(Math.random() * actions.length)];
+                        desc.textContent = "You " + action + " " + Math.floor(Math.random()*100) + "% faster.";
+                    break;
+
+                    case 2:
+                        // change after condition perk
+                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
+                        action = actions[Math.floor(Math.random() * actions.length)];
+                        desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster for " + Math.floor(Math.random()*100) + " seconds.";
+                    break;
+
+                    default:
+                        // Under the incredibly rare chance that Math.random floors to 4, default to a condition perk
+                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
+                        result = results[Math.floor(Math.random() * results.length)];
+                        desc.textContent = "When " + condition1 + ", " + result + ".";
+                        break;
+                }
+          });
+        </script>
+    </body>
+</html>

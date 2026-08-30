@@ -19,3 +19,5 @@ Progress made:
 Will work on:
 - Killer perks
 - Better Styling
+- Better perk quality
+- Fix sloppy code for conditioned perks

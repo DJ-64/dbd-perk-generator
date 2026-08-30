@@ -1,7 +1,7 @@
 # dbd-perk-generator
 
 ![Static Badge](https://img.shields.io/badge/progress-30%25-green)
-![Static Badge](https://img.shields.io/badge/works?-on_my_machine-orange)
+![Static Badge](https://img.shields.io/badge/works-on_my_machine-orange)
 
 Instructions:
 - Go to https://dj-64.github.io/dbd-perk-generator/

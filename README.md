@@ -8,10 +8,11 @@ Instructions:
 - Click the generate button
 
 This does **not** use generative AI to create perks.
+I did use AI to stylize this temporarily.
 
 Progress made:
 - Survivor perks
 
 Will work on:
 - Killer perks
-- Styling
+- Better Styling

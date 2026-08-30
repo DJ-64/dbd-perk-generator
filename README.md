@@ -1,7 +1,7 @@
 # dbd-perk-generator
 
 ![Static Badge](https://img.shields.io/badge/progress-30%25-green)
-![Static Badge](https://img.shields.io/badge/working-yes-green)
+![Static Badge](https://img.shields.io/badge/works?-on my machine-orange)
 
 Instructions:
 - Go to https://dj-64.github.io/dbd-perk-generator/
@@ -9,6 +9,9 @@ Instructions:
 
 This does **not** use generative AI to create perks.
 I did use AI to stylize this temporarily.
+
+Known problems:
+- Does not work on mobile
 
 Progress made:
 - Survivor perks

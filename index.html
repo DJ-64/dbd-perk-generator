@@ -93,15 +93,14 @@
             ]
 
             const results = [
-                "gain 6% Haste for 10 seconds",
-                "gain 5% Haste for 20 seconds",
-                "gain 2% Haste for 60 seconds",
-                "you scream and gain 5% Haste for 12 seconds",
-                "you scream",
-                "you scream and gain Endurance for 8 seconds",
-                "gain Endurance for 5 seconds",
-                "you see the Killer's aura for 5 seconds",
-                "you scream and see the Killer's aura for 10 seconds"
+                "gain 6% Haste for ",
+                "gain 5% Haste for ",
+                "gain 2% Haste for ",
+                "you scream and gain 5% Haste for ",
+                "you see the Killer's aura for ",
+                "you scream and see the Killer's aura for ",
+                "gain Endurance for ",
+                "you scream and gain Endurance for "
             ]
 
             const actions = [
@@ -115,7 +114,10 @@
                 "blind the Killer",
                 "open the Exit Gates",
                 "unlock the Hatch",
-                "drop Pallets"
+                "drop Pallets",
+                "vault",
+                "fast-vault",
+                "fast-exit a Locker"
             ]
             // Generator
             generate.addEventListener("click", function() {
@@ -131,27 +133,37 @@
                         // condition perk
                         condition1 = conditions[Math.floor(Math.random() * conditions.length)];
                         result = results[Math.floor(Math.random() * results.length)];
-                        desc.textContent = "When " + condition1 + ", " + result + ".";
+                        desc.textContent = "When " + condition1 + ", " + result + " for "+ Math.floor(Math.random()*30) + " seconds.";
                     break;
 
                     case 1:
-                        // basekit changer perk
-                        action = actions[Math.floor(Math.random() * actions.length)];
-                        desc.textContent = "You " + action + " " + Math.floor(Math.random()*100) + "% faster.";
-                    break;
-
-                    case 2:
                         // change after condition perk
                         condition1 = conditions[Math.floor(Math.random() * conditions.length)];
                         action = actions[Math.floor(Math.random() * actions.length)];
                         desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster for " + Math.floor(Math.random()*100) + " seconds.";
                     break;
 
+                    case 2:
+                        // change after condition, until condition perk
+                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
+                        condition2 = conditions[Math.floor(Math.random() * conditions.length)];
+                        action = actions[Math.floor(Math.random() * actions.length)];
+                        desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster until " + condition2;
+                    break;
+
+                    case 3:
+                        // change after condition, until condition perk
+                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
+                        condition2 = conditions[Math.floor(Math.random() * conditions.length)];
+                        action = actions[Math.floor(Math.random() * actions.length)];
+                        desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster until " + condition2;
+                    break;
+
                     default:
-                        // Under the incredibly rare chance that Math.random floors to 4, default to a condition perk
+                        // Under the possibilty that Math.random floors to a number I dont like, default to a condition perk
                         condition1 = conditions[Math.floor(Math.random() * conditions.length)];
                         result = results[Math.floor(Math.random() * results.length)];
-                        desc.textContent = "When " + condition1 + ", " + result + ".";
+                        desc.textContent = "When " + condition1 + ", " + result + " for "+ Math.floor(Math.random()*30) + " seconds.";
                         break;
                 }
           });

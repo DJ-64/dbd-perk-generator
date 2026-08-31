@@ -16,8 +16,8 @@
             <h3>Dead by Daylight Perk Generator</h3> 
             <button id="generate">Generate Survivor Perk</button> 
             <div class="perk-card"> 
-                <h2 id="title">Perk Name</h2> 
-                <p id="desc">Perk Description</p> 
+                <h2 id="title">Perk not generated yet</h2> 
+                <p id="desc">Use the button above to generate a perk</p> 
             </div>
             <p>I used chatgpt to style this. I think it looks cool.</p>
         </div>
@@ -64,10 +64,12 @@
                 "Guidance",
                 "Twist",
                 "Energy",
-                "Healing",
+                "Escape",
                 "Alliance",
                 "Partner",
-                "Opportunity"
+                "Opportunity",
+                "Dash",
+                "Dance"
             ]
 
             const conditions = [
@@ -85,7 +87,6 @@
                 "all other Survivors are dead",
                 "you drop a pallet",
                 "the Killer breaks a pallet",
-                "you are in the basement",
                 "the Trial begins",
                 "you are healed",
                 "you heal another Survivor"

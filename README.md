@@ -10,6 +10,9 @@ Instructions:
 This does **not** use generative AI to create perks.
 I did use AI to stylize this temporarily.
 
+Known problems:
+- Sometimes, perks may reward 0%
+
 Progress made:
 - Survivor perks
 

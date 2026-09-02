@@ -9,12 +9,13 @@
             color: #eee; font-family: Arial, Helvetica, sans-serif; } 
             .container { width: 90%; max-width: 600px; padding: 35px; text-align: center; 
             background: rgba(15, 15, 15, 0.95); border: 1px solid #4a2020; 
-            border-radius: 12px; box-shadow: 0 0 30px rgba(120, 0, 0, 0.35), inset 0 0 20px rgba(0, 0, 0, 0.8); } h3 { margin-top: 0; margin-bottom: 25px; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; color: #ddd; text-shadow: 0 0 10px rgba(255, 0, 0, 0.4); } #generate { padding: 14px 28px; border: 1px solid #8b1e1e; border-radius: 6px; background: linear-gradient(180deg, #8f2020, #4f0f0f); color: white; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); } #generate:hover { background: linear-gradient(180deg, #b52a2a, #691414); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(120, 0, 0, 0.5); } #generate:active { transform: translateY(1px); } .perk-card { margin-top: 30px; padding: 25px; background: linear-gradient(145deg, #1c1c1c, #0d0d0d); border: 1px solid #383838; border-left: 4px solid #9b1c1c; border-radius: 8px; text-align: left; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); } #title { margin: 0 0 12px; font-size: 25px; color: #fff; text-transform: uppercase; letter-spacing: 1px; } #desc { margin: 0; color: #bdbdbd; font-size: 16px; line-height: 1.6; } </style>
+            border-radius: 12px; box-shadow: 0 0 30px rgba(120, 0, 0, 0.35), inset 0 0 20px rgba(0, 0, 0, 0.8); } h3 { margin-top: 0; margin-bottom: 25px; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; color: #ddd; text-shadow: 0 0 10px rgba(255, 0, 0, 0.4); } .generate { padding: 14px 28px; border: 1px solid #8b1e1e; border-radius: 6px; background: linear-gradient(180deg, #8f2020, #4f0f0f); color: white; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.2s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); } #generate:hover { background: linear-gradient(180deg, #b52a2a, #691414); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(120, 0, 0, 0.5); } #generate:active { transform: translateY(1px); } .perk-card { margin-top: 30px; padding: 25px; background: linear-gradient(145deg, #1c1c1c, #0d0d0d); border: 1px solid #383838; border-left: 4px solid #9b1c1c; border-radius: 8px; text-align: left; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); } #title { margin: 0 0 12px; font-size: 25px; color: #fff; text-transform: uppercase; letter-spacing: 1px; } #desc { margin: 0; color: #bdbdbd; font-size: 16px; line-height: 1.6; } </style>
     </head>
     <body>
-        <div class="container"> 
+        <div class="container">     
             <h3>Dead by Daylight Perk Generator</h3> 
-            <button id="generate">Generate Survivor Perk</button> 
+            <button id="sgenerate" class="generate">Generate Survivor Perk</button> 
+            <button id="kgenerate" class="generate">Generate Killer Perk</button> 
             <div class="perk-card"> 
                 <h2 id="title">Perk not generated yet</h2> 
                 <p id="desc">Use the button above to generate a perk</p> 
@@ -23,11 +24,12 @@
         </div>
         <script>
             // Set variables to elements
-            generate = document.getElementById("generate")
+            sgenerate = document.getElementById("sgenerate")
+            kgenerate = document.getElementById("kgenerate")
             title = document.getElementById("title")
             desc = document.getElementById("desc")
-            // Perk information bank
-            const titles1 = [
+            // Surv Perk information bank
+            const stitles1 = [
                 "Decisive ",
                 "Vigilant ",
                 "Background ",
@@ -47,7 +49,7 @@
                 "Urban ",
                 "Wide-Open "
             ]
-            const titles2 = [
+            const stitles2 = [
                 "Focus",
                 "Hope",
                 "Strength",
@@ -72,7 +74,7 @@
                 "Dance"
             ]
 
-            const conditions = [
+            const sconditions = [
                 "all generators are completed",
                 "you cleanse a Totem",
                 "you are unhooked",
@@ -91,7 +93,7 @@
                 "you heal another Survivor"
             ]
 
-            const results = [
+            const sresults = [
                 "gain 6% Haste ",
                 "gain 5% Haste ",
                 "gain 2% Haste ",
@@ -102,7 +104,7 @@
                 "you scream and gain Endurance "
             ]
 
-            const actions = [
+            const sactions = [
                 "unlock chests",
                 "heal",
                 "unhook other Survivors",
@@ -113,16 +115,88 @@
                 "blind the Killer",
                 "open the Exit Gates",
                 "unlock the Hatch",
-                "drop Pallets",
+                "drop pallets",
                 "vault",
                 "fast-vault",
                 "fast-exit a Locker"
             ]
-            // Generator
-            generate.addEventListener("click", function() {
+
+            const kactions = [
+                "break pallets",
+                "vault",
+                "pick up Survivors",
+                "damage generators",
+                "hook Survivors"
+            ]
+
+            const ktitles1 = [
+                "Awakened ",
+                "Beast of ",
+                "Bitter ",
+                "Blood ",
+                "Brutal ",
+                "Corrupt ",
+                "Cruel ",
+                "Dark ",
+                "Dying ",
+                "Grim ",
+                "Shattered "
+            ]
+
+            const ktitles2 = [
+                "Lullaby",
+                "Death",
+                "Ruin",
+                "Instinct",
+                "Thunder",
+                "Switch",
+                "Bound",
+                "Distress",
+                "Demise",
+                "Chase",
+                "Butcher",
+                "Whisper",
+                "Obsession"
+            ]
+
+            const kconditions = [
+                "you injure a Survivor",
+                "you hook a Survivor",
+                "you vault",
+                "you are blinded",
+                "a Survivor screams",
+                "you are stunned",
+                "you miss a basic-attack",
+                "you down a Survivor",
+                "a Survivor is unhooked",
+                "all generators are completed",
+                "a Survivor cleanses a totem",
+                "you break a pallet",
+                "a Survivor drops a pallet",
+                "a Survivor exits a locker",
+                "a generator is completed"
+            ]
+
+            const kresults = [
+                "you gain Undetectable ",
+                "you gain 7.5% Haste ",
+                "you see the Auras of all Survivors within 20 meters ",
+                "increase your Terror Radius by 30% ",
+                "you gain 5% haste ",
+                "block 3 random generators ",
+                "you see the Obsession's aura ",
+                "the Obsession becomes Exposed ",
+                "all Survivors become Exposed ",
+                "all Injured Survivors become Broken ",
+                "all Survivors become Exhausted ",
+                "all Survivors become Oblivious ",
+                "decrease your Terror Radius by 10% "
+            ]
+            // Surv Generator
+            sgenerate.addEventListener("click", function() {
                 // Title
-                t1 = titles1[Math.floor(Math.random() * titles1.length)];
-                t2 = titles2[Math.floor(Math.random() * titles2.length)];
+                t1 = stitles1[Math.floor(Math.random() * stitles1.length)];
+                t2 = stitles2[Math.floor(Math.random() * stitles2.length)];
                 title.textContent = t1 + t2
 
                 //choose perk type
@@ -130,42 +204,66 @@
                 {
                     case 0:
                         // condition perk
-                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
-                        result = results[Math.floor(Math.random() * results.length)];
+                        condition1 = sconditions[Math.floor(Math.random() * sconditions.length)];
+                        result = sresults[Math.floor(Math.random() * sresults.length)];
                         desc.textContent = "When " + condition1 + ", " + result + " for "+ Math.floor(Math.random()*30) + " seconds.";
                     break;
 
                     case 1:
                         // change after condition perk
-                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
-                        action = actions[Math.floor(Math.random() * actions.length)];
+                        condition1 = sconditions[Math.floor(Math.random() * sconditions.length)];
+                        action = sactions[Math.floor(Math.random() * sactions.length)];
                         desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster for " + Math.floor(Math.random()*100) + " seconds.";
                     break;
 
                     case 2:
                         // change after condition, until condition perk
-                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
-                        condition2 = conditions[Math.floor(Math.random() * conditions.length)];
-                        action = actions[Math.floor(Math.random() * actions.length)];
-                        desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster until " + condition2;
-                    break;
-
-                    case 3:
-                        // change after condition, until condition perk
-                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
-                        condition2 = conditions[Math.floor(Math.random() * conditions.length)];
-                        action = actions[Math.floor(Math.random() * actions.length)];
-                        desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster until " + condition2;
+                        condition1 = sconditions[Math.floor(Math.random() * sconditions.length)];
+                        condition2 = sconditions[Math.floor(Math.random() * sconditions.length)];
+                        action = sactions[Math.floor(Math.random() * sactions.length)];
+                        desc.textContent = "When " + condition1 + ", you " + action + " " + Math.floor(Math.random()*100) + "% faster until " + condition2 + ".";
                     break;
 
                     default:
                         // Under the possibilty that Math.random floors to a number I dont like, default to a condition perk
-                        condition1 = conditions[Math.floor(Math.random() * conditions.length)];
-                        result = results[Math.floor(Math.random() * results.length)];
+                        condition1 = sconditions[Math.floor(Math.random() * sconditions.length)];
+                        result = sresults[Math.floor(Math.random() * sresults.length)];
                         desc.textContent = "When " + condition1 + ", " + result + " for "+ Math.floor(Math.random()*30) + " seconds.";
                         break;
                 }
           });
+          // Killer Generator
+          kgenerate.addEventListener("click", function() {
+                // Title
+                t1 = ktitles1[Math.floor(Math.random() * ktitles1.length)];
+                t2 = ktitles2[Math.floor(Math.random() * ktitles2.length)];
+                title.textContent = t1 + t2
+
+                //choose perk type
+                switch (Math.floor(Math.random() * 2))
+                {
+                    case 0:
+                        // condition perk
+                        condition1 = kconditions[Math.floor(Math.random() * kconditions.length)];
+                        result = kresults[Math.floor(Math.random() * kresults.length)];
+                        desc.textContent = "When " + condition1 + ", " + result + " for "+ Math.floor(Math.random()*30) + " seconds.";
+                    break;
+
+                    case 1:
+                        // change after condition, until condition perk
+                        condition1 = kconditions[Math.floor(Math.random() * kconditions.length)];
+                        condition2 = kconditions[Math.floor(Math.random() * kconditions.length)];
+                        result = kresults[Math.floor(Math.random() * kresults.length)];
+                        desc.textContent = "When " + condition1 + ", " + result + " until "+ condition2 + ".";
+                    break;
+
+                    case 3:
+                        condition1 = kconditions[Math.floor(Math.random() * kconditions.length)];
+                        action = kactions[Math.floor(Math.random() * kactions.length)];
+                        desc.textContent = "When " + condition1 + ", you " + result + " "+ Math.floor(Math.random()*30) + " faster for" + Math.floor(Math.random()*30) + "seconds.";
+                        break;
+                }
+          })
         </script>
     </body>
 </html>

@@ -20,14 +20,19 @@
                 <h2 id="title">Perk not generated yet</h2> 
                 <p id="desc">Use the button above to generate a perk</p> 
             </div>
-            <p>I used chatgpt to style this. I think it looks cool.</p>
+            <br>
+            <button id="copy" class="generate">Copy this perk</button> 
+            <button id="download" class="generate">Download this perk</button> 
+            <p>I used chatgpt to style this. Code was hand-written.</p>
         </div>
+        <br>
         <script>
             // Set variables to elements
-            sgenerate = document.getElementById("sgenerate")
-            kgenerate = document.getElementById("kgenerate")
-            title = document.getElementById("title")
-            desc = document.getElementById("desc")
+            sgenerate = document.getElementById("sgenerate");
+            kgenerate = document.getElementById("kgenerate");
+            copy = document.getElementById("copy");
+            title = document.getElementById("title");
+            desc = document.getElementById("desc");
             // Surv Perk information bank
             const stitles1 = [
                 "Decisive ",
@@ -99,6 +104,7 @@
                 "gain 2% Haste ",
                 "you scream and gain 5% Haste ",
                 "you see the Killer's aura ",
+                "gain Elusive ",
                 "you scream and see the Killer's aura ",
                 "gain Endurance ",
                 "you scream and gain Endurance "
@@ -183,7 +189,6 @@
                 "you see the Auras of all Survivors within 20 meters ",
                 "increase your Terror Radius by 30% ",
                 "you gain 5% haste ",
-                "block 3 random generators ",
                 "you see the Obsession's aura ",
                 "the Obsession becomes Exposed ",
                 "all Survivors become Exposed ",
@@ -240,7 +245,7 @@
                 title.textContent = t1 + t2
 
                 //choose perk type
-                switch (Math.floor(Math.random() * 2))
+                switch (Math.floor(Math.random() * 4))
                 {
                     case 0:
                         // condition perk
@@ -260,9 +265,33 @@
                     case 3:
                         condition1 = kconditions[Math.floor(Math.random() * kconditions.length)];
                         action = kactions[Math.floor(Math.random() * kactions.length)];
-                        desc.textContent = "When " + condition1 + ", you " + result + " "+ Math.floor(Math.random()*30) + " faster for" + Math.floor(Math.random()*30) + "seconds.";
+                        desc.textContent = "When " + condition1 + ", you " + action + " "+ Math.floor(Math.random()*30) + "% faster for " + Math.floor(Math.random()*30) + " seconds.";
+                        break;
+
+                    default:
+                        condition1 = kconditions[Math.floor(Math.random() * kconditions.length)];
+                        result = kresults[Math.floor(Math.random() * kresults.length)];
+                        desc.textContent = "When " + condition1 + ", " + result + " for "+ Math.floor(Math.random()*30) + " seconds.";
                         break;
                 }
+          })
+          // Copy feature
+          copy.addEventListener("click", function() {
+                navigator.clipboard.writeText(title.textContent + "\n" + desc.textContent);
+          })
+          // Download feature
+          download.addEventListener("click", function() {
+                const text = title.textContent + "\n" + desc.textContent + "\nGenerated with https://dj-64.github.io/dbd-perk-generator/";
+
+                const blob = new Blob([text], { type: "text/plain" });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = title.textContent + ".txt";
+                a.click();
+
+                URL.revokeObjectURL(url);
           })
         </script>
     </body>

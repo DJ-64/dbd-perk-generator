@@ -1,6 +1,6 @@
 # dbd-perk-generator
 
-![Static Badge](https://img.shields.io/badge/progress-75%25-green)
+![Static Badge](https://img.shields.io/badge/progress-80%25-green)
 ![Static Badge](https://img.shields.io/badge/works-on_my_machine-orange)
 
 Instructions:
@@ -8,7 +8,7 @@ Instructions:
 - Click the generate button
 
 This does **not** use generative AI to create perks.
-I did use AI to stylize this temporarily.
+I did use AI to stylize the website.
 
 Known problems:
 - Sometimes, perks may reward with 0.
